@@ -19,8 +19,10 @@ in {
   };
 
   networking.hostName = "nixos.iso.xn--wxa.computer";
-  # networking.networkmanager.enable = true;
-  
+  networking.firewall.enable = true;
+  networking.wireless.enable = false;
+  networking.networkmanager.enable = true;
+
   programs.adb.enable = true;
   programs.bash.enableCompletion = true;
   programs.mosh.enable = true;
@@ -29,8 +31,6 @@ in {
   programs.tmux.terminal = "screen-256color";
   programs.tmux.clock24 = true;
   programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
-
-  networking.firewall.enable = true;
 
   i18n = {
     consoleFont = "Lat2-Terminus16";
