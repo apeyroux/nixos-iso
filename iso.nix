@@ -1,9 +1,16 @@
 {config, pkgs, ...}:
-{
+
+let
+
+  version = "1.0";
+  
+in {
   imports = [
     <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
     <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
   ];
+
+  boot.supportedFilesystems = [ "zfs" ];
 
   nixpkgs.config.allowUnfree = true;
 
