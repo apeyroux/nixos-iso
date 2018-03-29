@@ -61,37 +61,28 @@ in {
   ];
 
 
-  services.xserver.enable = true;
-  services.xserver.autorun = true;
-  services.xserver.layout = "fr";
-  services.xserver.xkbOptions = "eurosign:e";
-  services.xserver.libinput.enable = true;
+  services.xserver = {
+    enable = true;
+    autorun = true;
+    layout = "fr";
+    xkbOptions = "eurosign:e";
+    libinput.enable = true;
+    displayManager.slim.enable = true;
 
-  services.xserver.displayManager.slim.enable = true;
+    # xmonad
+    windowManager = {
+      # i3.enable = true;
+      xmonad.enable = true;
+      xmonad.enableContribAndExtras = true;
+      default = "xmonad";
+    };
 
-  services.xserver.resolutions = [
-        { x = 2048; y = 1152; }
-        { x = 1920; y = 1080; }
-        { x = 1600; y = 900; }
-	{ x = 1368; y = 768; }
-	{ x = 1920; y = 1080; }
-	{ x = 2560; y = 1440; }
-	{ x = 2880; y = 1620; }
-  ];
-
-  # xmonad
-  services.xserver.windowManager = {
-    # i3.enable = true;
-    xmonad.enable = true;
-    xmonad.enableContribAndExtras = true;
-    default = "xmonad";
-  };
-
-  services.xserver.desktopManager = {
-    xfce.enable = true;
-    xterm.enable = false;
-    xfce.thunarPlugins = with pkgs.xfce; [ thunar-archive-plugin ];
-    default = "none";
+    desktopManager = {
+      xfce.enable = true;
+      xterm.enable = false;
+      xfce.thunarPlugins = with pkgs.xfce; [ thunar-archive-plugin ];
+      default = "none";
+      };
   };
 
   users.extraUsers.alex = {
