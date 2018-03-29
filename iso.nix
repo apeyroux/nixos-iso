@@ -98,14 +98,7 @@ in {
 
   virtualisation = {
     docker.enable = true;
-    virtualbox.host.enable = true;
   };
-
-  nixpkgs.config.virtualbox = {
-    enableExtensionPack = true;
-    # pulseSupport = true;
-  };
-
   
   isoImage.makeUsbBootable = true;
   isoImage.makeEfiBootable = true;
