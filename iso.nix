@@ -53,7 +53,6 @@ in {
     termite
     vim
     networkmanager
-    sudo
     trayer
     powerline-fonts
     feh
