@@ -89,7 +89,7 @@ in {
     password = "alex";
     extraGroups = ["wheel"
                    "adbusers"
-		   "disks"
+                   "disks"
                    "networkmanager"
                    "vboxusers"
                    "docker"];
@@ -104,18 +104,17 @@ in {
   isoImage.includeSystemBuildDependencies = true; # offline install
   isoImage.storeContents = with pkgs; [ tmux
                                         mosh
-					(import /home/alex/src/emacs.nix/default.nix {})
-					git
-    					gnupg
-    					unzip
-    					google-chrome
-    					haskellPackages.xmobar
-    					htop
-    					termite
-    					vim
-    					powerline-fonts
-    					feh
-					firefox
-    					xorg.xbacklight ];
-
+					                              (import /home/alex/src/emacs.nix/default.nix {})
+					                              git
+    			                              gnupg
+    			                              unzip
+    			                              google-chrome
+    			                              haskellPackages.xmobar
+    			                              htop
+    			                              termite
+    			                              vim
+    			                              powerline-fonts
+    			                              feh
+					                              firefox
+    			                              xorg.xbacklight ];
 }
