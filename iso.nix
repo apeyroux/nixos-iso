@@ -30,7 +30,6 @@ in {
   programs.tmux.shortcut = "a";
   programs.tmux.terminal = "screen-256color";
   programs.tmux.clock24 = true;
-  programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   i18n = {
     consoleFont = "Lat2-Terminus16";
@@ -41,48 +40,13 @@ in {
   time.timeZone = "Europe/Paris";
 
   environment.systemPackages = with pkgs; [
+    emacs26-nox
     git
     gnupg
-    (import /home/alex/src/emacs.nix/default.nix {})
-    firefox
-    sudo
-    unzip
-    google-chrome
-    haskellPackages.xmobar
     htop
-    termite
-    vim
     networkmanager
-    trayer
-    powerline-fonts
-    feh
-    xorg.xbacklight
+    unzip
   ];
-
-
-  services.xserver = {
-    enable = true;
-    autorun = true;
-    layout = "fr";
-    xkbOptions = "eurosign:e";
-    libinput.enable = true;
-    displayManager.slim.enable = true;
-
-    # xmonad
-    windowManager = {
-      # i3.enable = true;
-      xmonad.enable = true;
-      xmonad.enableContribAndExtras = true;
-      default = "xmonad";
-    };
-
-    desktopManager = {
-      xfce.enable = true;
-      xterm.enable = false;
-      xfce.thunarPlugins = with pkgs.xfce; [ thunar-archive-plugin ];
-      default = "none";
-      };
-  };
 
   users.extraUsers.alex = {
     isNormalUser = true;
@@ -95,26 +59,7 @@ in {
                    "docker"];
   };
 
-  virtualisation = {
-    docker.enable = true;
-  };
-  
   isoImage.makeUsbBootable = true;
   isoImage.makeEfiBootable = true;
-  isoImage.includeSystemBuildDependencies = true; # offline install
-  isoImage.storeContents = with pkgs; [ tmux
-                                        mosh
-					                              (import /home/alex/src/emacs.nix/default.nix {})
-					                              git
-    			                              gnupg
-    			                              unzip
-    			                              google-chrome
-    			                              haskellPackages.xmobar
-    			                              htop
-    			                              termite
-    			                              vim
-    			                              powerline-fonts
-    			                              feh
-					                              firefox
-    			                              xorg.xbacklight ];
+  isoImage.includeSystemBuildDependencies = false; # offline install
 }
