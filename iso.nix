@@ -26,7 +26,7 @@
   programs.bash.enableCompletion = true;
   programs.mosh.enable = true;
   programs.tmux.enable = true;
-  programs.tmux.shortcut = "a";
+  programs.tmux.shortcut = "b";
   programs.tmux.terminal = "screen-256color";
   programs.tmux.clock24 = true;
 
