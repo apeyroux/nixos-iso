@@ -1,10 +1,6 @@
-{config, pkgs, ...}:
+{config, lib, pkgs, ...}:
 
-let
-
-  version = "px-18.3";
-  
-in {
+{
   imports = [
     <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
     <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
@@ -18,12 +14,15 @@ in {
     sudo.wheelNeedsPassword = false;
   };
 
-  networking.hostName = "nixos.iso.xn--wxa.computer";
+  networking.hostName = "nixos-srv.iso.xn--wxa.computer";
   networking.firewall.enable = true;
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
 
-  programs.adb.enable = true;
+  environment.noXlibs = lib.mkDefault true;
+  lib.i18n.supportedLocales = [ (config.i18n.defaultLocale + "/UTF-8") ];
+  services.nixosManual.enable = lib.mkDefault false;
+
   programs.bash.enableCompletion = true;
   programs.mosh.enable = true;
   programs.tmux.enable = true;
@@ -40,7 +39,7 @@ in {
   time.timeZone = "Europe/Paris";
 
   environment.systemPackages = with pkgs; [
-    emacs26-nox
+    emacs25-nox
     git
     gnupg
     htop
