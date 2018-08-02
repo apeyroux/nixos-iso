@@ -1,14 +1,14 @@
 {config, lib, pkgs, ...}:
 
 {
+
   imports = [
     <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
     <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
   ];
 
   boot.supportedFilesystems = [ "zfs" ];
-
-  nixpkgs.config.allowUnfree = true;
+  boot.zfs.enableUnstable = true;
 
   security = {
     sudo.wheelNeedsPassword = false;
@@ -17,11 +17,12 @@
   networking.hostName = "nixos-srv.iso.xn--wxa.computer";
   networking.firewall.enable = true;
   networking.wireless.enable = false;
-  networking.networkmanager.enable = true;
 
   environment.noXlibs = lib.mkDefault true;
   lib.i18n.supportedLocales = [ (config.i18n.defaultLocale + "/UTF-8") ];
   services.nixosManual.enable = lib.mkDefault false;
+
+  nixpkgs.config.allowUnfree = true;
 
   programs.bash.enableCompletion = true;
   programs.mosh.enable = true;
@@ -41,24 +42,21 @@
   environment.systemPackages = with pkgs; [
     emacs25-nox
     git
+    git-crypt
     gnupg
     htop
-    networkmanager
     unzip
   ];
 
   users.extraUsers.alex = {
     isNormalUser = true;
     password = "alex";
-    extraGroups = ["wheel"
-                   "adbusers"
-                   "disks"
-                   "networkmanager"
-                   "vboxusers"
-                   "docker"];
+    extraGroups = [ "wheel" "disks" ];
   };
 
+  isoImage.isoBaseName = "nixos-with-zfs-unstable";
   isoImage.makeUsbBootable = true;
   isoImage.makeEfiBootable = true;
   isoImage.includeSystemBuildDependencies = false; # offline install
+
 }
