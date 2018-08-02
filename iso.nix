@@ -14,7 +14,7 @@
     sudo.wheelNeedsPassword = false;
   };
 
-  networking.hostName = "nixos-install-with-zfs-unstable.iso.xn--wxa.computer";
+  networking.hostName = "nixos-nox-with-zfs-unstable.iso.xn--wxa.computer";
   networking.firewall.enable = true;
   networking.wireless.enable = false;
 
