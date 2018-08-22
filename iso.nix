@@ -7,6 +7,7 @@
     <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_4_17;
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.enableUnstable = true;
 
@@ -54,7 +55,13 @@
     extraGroups = [ "wheel" "disks" ];
   };
 
-  isoImage.isoBaseName = "nixos-with-zfs-unstable";
+  users.extraUsers.nixos = {
+    isNormalUser = true;
+    password = "nixos";
+    extraGroups = [ "wheel" "disks" ];
+  };
+
+  isoImage.isoBaseName = "nixos-zfs-unstable-linux-4-17";
   isoImage.makeUsbBootable = true;
   isoImage.makeEfiBootable = true;
   isoImage.includeSystemBuildDependencies = false; # offline install
