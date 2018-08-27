@@ -43,7 +43,7 @@ in {
   environment.systemPackages = with pkgs; [
     git
     gnupg
-    (import /home/alex/src/emacs.nix/default.nix {})
+    emacs
     firefox
     sudo
     unzip
@@ -104,7 +104,7 @@ in {
   isoImage.includeSystemBuildDependencies = true; # offline install
   isoImage.storeContents = with pkgs; [ tmux
                                         mosh
-					                              (import /home/alex/src/emacs.nix/default.nix {})
+                                        emacs
 					                              git
     			                              gnupg
     			                              unzip
