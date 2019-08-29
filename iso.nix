@@ -48,15 +48,9 @@ in {
     sudo
     unzip
     google-chrome
-    haskellPackages.xmobar
     htop
-    termite
     vim
     networkmanager
-    trayer
-    powerline-fonts
-    feh
-    xorg.xbacklight
   ];
 
 
@@ -67,14 +61,6 @@ in {
     xkbOptions = "eurosign:e";
     libinput.enable = true;
     displayManager.slim.enable = true;
-
-    # xmonad
-    windowManager = {
-      # i3.enable = true;
-      xmonad.enable = true;
-      xmonad.enableContribAndExtras = true;
-      default = "xmonad";
-    };
 
     desktopManager = {
       xfce.enable = true;
@@ -90,15 +76,9 @@ in {
     extraGroups = ["wheel"
                    "adbusers"
                    "disks"
-                   "networkmanager"
-                   "vboxusers"
-                   "docker"];
+                   "networkmanager"];
   };
 
-  virtualisation = {
-    docker.enable = true;
-  };
-  
   isoImage.makeUsbBootable = true;
   isoImage.makeEfiBootable = true;
   isoImage.includeSystemBuildDependencies = true; # offline install
@@ -108,13 +88,9 @@ in {
 					                              git
     			                              gnupg
     			                              unzip
-    			                              google-chrome
-    			                              haskellPackages.xmobar
     			                              htop
     			                              termite
     			                              vim
-    			                              powerline-fonts
-    			                              feh
-					                              firefox
-    			                              xorg.xbacklight ];
+																				firefox
+    			               ];
 }
