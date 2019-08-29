@@ -11,6 +11,7 @@ in {
   ];
 
   boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.enableUnstable = true;
 
   nixpkgs.config.allowUnfree = true;
 
