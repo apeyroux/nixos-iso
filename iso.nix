@@ -18,7 +18,7 @@ in {
     sudo.wheelNeedsPassword = false;
   };
 
-  networking.hostName = "nixos.iso.xn--wxa.computer";
+  networking.hostName = "nixos.iso.px.io";
   networking.firewall.enable = true;
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
