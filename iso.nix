@@ -44,32 +44,12 @@ in {
   environment.systemPackages = with pkgs; [
     git
     gnupg
-    emacs
-    firefox
     sudo
     unzip
-    google-chrome
     htop
     vim
     networkmanager
   ];
-
-
-  services.xserver = {
-    enable = true;
-    autorun = true;
-    layout = "fr";
-    xkbOptions = "eurosign:e";
-    libinput.enable = true;
-    displayManager.slim.enable = true;
-
-    desktopManager = {
-      xfce.enable = true;
-      xterm.enable = false;
-      xfce.thunarPlugins = with pkgs.xfce; [ thunar-archive-plugin ];
-      default = "none";
-      };
-  };
 
   users.extraUsers.alex = {
     isNormalUser = true;
@@ -85,13 +65,10 @@ in {
   isoImage.includeSystemBuildDependencies = true; # offline install
   isoImage.storeContents = with pkgs; [ tmux
                                         mosh
-                                        emacs
 					                              git
     			                              gnupg
     			                              unzip
     			                              htop
-    			                              termite
     			                              vim
-																				firefox
     			               ];
 }
